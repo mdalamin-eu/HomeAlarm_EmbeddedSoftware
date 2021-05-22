@@ -1,0 +1,280 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    04/25/2021  03:08:12  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\homealarm.obj, .\Objects\hwapi.obj TO .\Objects\homealarm PRINT (.\Listings\homeal
+>> arm.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\homealarm.obj (HOMEALARM)
+  .\Objects\hwapi.obj (HWAPI)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\homealarm (HOMEALARM)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0004H     UNIT         ?DT?HWAPI
+            DATA    000CH     0001H     UNIT         _DATA_GROUP_
+            IDATA   000DH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0008H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+                    000EH     07F2H                  *** GAP ***
+            CODE    0800H     00C0H     UNIT         ?PR?MAIN?HOMEALARM
+            CODE    08C0H     008CH     UNIT         ?C_C51STARTUP
+            CODE    094CH     0027H     UNIT         ?PR?INCREMENTSECONDS?HWAPI
+            CODE    0973H     001AH     UNIT         ?PR?OUTDOORSENSORS?HWAPI
+            CODE    098DH     0016H     UNIT         ?PR?INDOORSENSORS?HWAPI
+            CODE    09A3H     0011H     UNIT         ?PR?INITIALIZE?HWAPI
+            CODE    09B4H     0010H     UNIT         ?PR?CONFIGURETIMERINTERRUPT?HWAPI
+            CODE    09C4H     0009H     UNIT         ?C_INITSEG
+            CODE    09CDH     0007H     UNIT         ?PR?ISKEY?HWAPI
+            CODE    09D4H     0007H     UNIT         ?PR?ISRFID?HWAPI
+            CODE    09DBH     0006H     UNIT         ?PR?RESETSECONDS?HWAPI
+            CODE    09E1H     0005H     UNIT         ?PR?GETSECONDS?HWAPI
+            CODE    09E6H     0003H     UNIT         ?PR?SETALARMON?HWAPI
+            CODE    09E9H     0003H     UNIT         ?PR?SETALARMOFF?HWAPI
+            CODE    09ECH     0003H     UNIT         ?PR?SETACTIVEON?HWAPI
+            CODE    09EFH     0003H     UNIT         ?PR?SETACTIVEOFF?HWAPI
+            CODE    09F2H     0003H     UNIT         ?PR?_SHOWSTATE?HWAPI
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\homealarm (HOMEALARM)
+
+
+SEGMENT                                     DATA_GROUP 
+  +--> CALLED SEGMENT                     START    LENGTH
+---------------------------------------------------------
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/25/2021  03:08:12  PAGE 2
+
+
+?C_C51STARTUP                             -----    -----
+  +--> ?PR?MAIN?HOMEALARM
+  +--> ?C_INITSEG
+
+?PR?MAIN?HOMEALARM                        000CH    0001H
+  +--> ?PR?INITIALIZE?HWAPI
+  +--> ?PR?_SHOWSTATE?HWAPI
+  +--> ?PR?ISKEY?HWAPI
+  +--> ?PR?SETACTIVEON?HWAPI
+  +--> ?PR?INDOORSENSORS?HWAPI
+  +--> ?PR?ISRFID?HWAPI
+  +--> ?PR?SETACTIVEOFF?HWAPI
+  +--> ?PR?OUTDOORSENSORS?HWAPI
+  +--> ?PR?RESETSECONDS?HWAPI
+  +--> ?PR?GETSECONDS?HWAPI
+  +--> ?PR?SETALARMON?HWAPI
+  +--> ?PR?SETALARMOFF?HWAPI
+
+?PR?INITIALIZE?HWAPI                      -----    -----
+  +--> ?PR?SETACTIVEOFF?HWAPI
+  +--> ?PR?SETALARMOFF?HWAPI
+  +--> ?PR?CONFIGURETIMERINTERRUPT?HWAPI
+
+?PR?OUTDOORSENSORS?HWAPI                  -----    -----
+  +--> ?PR?INDOORSENSORS?HWAPI
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\homealarm (HOMEALARM)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        HOMEALARM
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0800H         PUBLIC        main
+  -------         PROC          MAIN
+  -------         DO            
+  D:000CH         SYMBOL        device_state
+  -------         ENDDO         
+  C:0800H         LINE#         4
+  C:0800H         LINE#         5
+  C:0803H         LINE#         6
+  C:0806H         LINE#         7
+  C:0806H         LINE#         8
+  C:080DH         LINE#         9
+  C:0822H         LINE#         10
+  C:0822H         LINE#         11
+  C:0829H         LINE#         12
+  C:082CH         LINE#         13
+  C:082FH         LINE#         15
+  C:082FH         LINE#         16
+  C:0831H         LINE#         17
+  C:0831H         LINE#         18
+  C:0838H         LINE#         19
+  C:0838H         LINE#         20
+  C:083AH         LINE#         21
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/25/2021  03:08:12  PAGE 3
+
+
+  C:0841H         LINE#         22
+  C:0841H         LINE#         23
+  C:0843H         LINE#         24
+  C:084AH         LINE#         25
+  C:084CH         LINE#         26
+  C:084FH         LINE#         27
+  C:084FH         LINE#         28
+  C:0851H         LINE#         30
+  C:0851H         LINE#         31
+  C:085FH         LINE#         32
+  C:0862H         LINE#         33
+  C:0865H         LINE#         34
+  C:0867H         LINE#         35
+  C:086EH         LINE#         36
+  C:086EH         LINE#         37
+  C:086EH         LINE#         38
+  C:0870H         LINE#         40
+  C:0870H         LINE#         41
+  C:0877H         LINE#         42
+  C:087AH         LINE#         43
+  C:087CH         LINE#         44
+  C:088AH         LINE#         45
+  C:088DH         LINE#         46
+  C:0890H         LINE#         47
+  C:08A1H         LINE#         48
+  C:08A4H         LINE#         49
+  C:08A4H         LINE#         50
+  C:08A7H         LINE#         52
+  C:08A7H         LINE#         53
+  C:08AAH         LINE#         54
+  C:08B4H         LINE#         55
+  C:08B7H         LINE#         56
+  C:08BAH         LINE#         57
+  C:08BDH         LINE#         58
+  C:08BDH         LINE#         59
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        HOMEALARM
+
+  -------         MODULE        HWAPI
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  C:098DH         PUBLIC        indoorSensors
+  B:0090H.2       PUBLIC        SIREN
+  D:00B0H         PUBLIC        P3
+  C:0973H         PUBLIC        outdoorSensors
+  B:00A8H.7       PUBLIC        EA
+  C:09CDH         PUBLIC        isKey
+  B:0080H.0       PUBLIC        WINDOW1
+  B:0080H.1       PUBLIC        WINDOW2
+  D:00A8H         PUBLIC        IE
+  B:0090H.0       PUBLIC        POWER
+  C:09E1H         PUBLIC        getSeconds
+  D:00B8H         PUBLIC        IP
+  B:0080H.2       PUBLIC        LEAK
+  C:094CH         PUBLIC        incrementSeconds
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/25/2021  03:08:12  PAGE 4
+
+
+  C:09B4H         PUBLIC        configureTimerInterrupt
+  B:00B0H.1       PUBLIC        RFID
+  B:0080H.3       PUBLIC        FIRE
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  C:09A3H         PUBLIC        initialize
+  B:0090H.1       PUBLIC        ACTIVE
+  C:09F2H         PUBLIC        _showState
+  B:00A8H.1       PUBLIC        ET0
+  C:09EFH         PUBLIC        setActiveOff
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:0088H.4       PUBLIC        TR0
+  B:0080H.6       PUBLIC        PRESENCE
+  C:09E9H         PUBLIC        setAlarmOff
+  C:09D4H         PUBLIC        isRfid
+  B:0080H.4       PUBLIC        DOOR1
+  B:0080H.5       PUBLIC        DOOR2
+  D:00C8H         PUBLIC        T2CON
+  B:00B0H.0       PUBLIC        KEY
+  C:09ECH         PUBLIC        setActiveOn
+  D:000AH         PUBLIC        seconds
+  D:00D0H         PUBLIC        PSW
+  C:09DBH         PUBLIC        resetSeconds
+  C:09E6H         PUBLIC        setAlarmOn
+  -------         PROC          INITIALIZE
+  C:09A3H         LINE#         22
+  C:09A3H         LINE#         23
+  C:09A6H         LINE#         24
+  C:09A9H         LINE#         25
+  C:09ABH         LINE#         26
+  C:09AEH         LINE#         27
+  C:09B1H         LINE#         28
+  -------         ENDPROC       INITIALIZE
+  -------         PROC          ISKEY
+  C:09CDH         LINE#         31
+  -------         ENDPROC       ISKEY
+  -------         PROC          ISRFID
+  C:09D4H         LINE#         32
+  -------         ENDPROC       ISRFID
+  -------         PROC          INDOORSENSORS
+  C:098DH         LINE#         33
+  -------         ENDPROC       INDOORSENSORS
+  -------         PROC          OUTDOORSENSORS
+  C:0973H         LINE#         34
+  -------         ENDPROC       OUTDOORSENSORS
+  -------         PROC          GETSECONDS
+  C:09E1H         LINE#         35
+  -------         ENDPROC       GETSECONDS
+  -------         PROC          SETALARMON
+  C:09E6H         LINE#         37
+  -------         ENDPROC       SETALARMON
+  -------         PROC          SETALARMOFF
+  C:09E9H         LINE#         38
+  -------         ENDPROC       SETALARMOFF
+  -------         PROC          SETACTIVEON
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/25/2021  03:08:12  PAGE 5
+
+
+  C:09ECH         LINE#         39
+  -------         ENDPROC       SETACTIVEON
+  -------         PROC          SETACTIVEOFF
+  C:09EFH         LINE#         40
+  -------         ENDPROC       SETACTIVEOFF
+  -------         PROC          _SHOWSTATE
+  D:0006H         SYMBOL        state
+  C:09F2H         LINE#         41
+  -------         ENDPROC       _SHOWSTATE
+  -------         PROC          RESETSECONDS
+  C:09DBH         LINE#         42
+  -------         ENDPROC       RESETSECONDS
+  -------         PROC          CONFIGURETIMERINTERRUPT
+  C:09B4H         LINE#         45
+  C:09B4H         LINE#         46
+  -------         ENDPROC       CONFIGURETIMERINTERRUPT
+  -------         PROC          INCREMENTSECONDS
+  -------         DO            
+  D:0008H         SYMBOL        ticks
+  -------         ENDDO         
+  C:094CH         LINE#         49
+  C:094EH         LINE#         51
+  C:095CH         LINE#         53
+  C:0962H         LINE#         54
+  C:096AH         LINE#         55
+  C:0970H         LINE#         56
+  C:0970H         LINE#         57
+  -------         ENDPROC       INCREMENTSECONDS
+  -------         ENDMOD        HWAPI
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 016BH BYTE (17%) *
+******************************************************************************
+
+Program Size: data=14.0 xdata=0 code=507
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,4 @@
+".\Objects\homealarm.obj",
+".\Objects\hwapi.obj" 
+TO ".\Objects\homealarm" 
+PRINT(".\Listings\homealarm.m51") RAMSIZE(256) 

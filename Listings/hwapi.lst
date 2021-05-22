@@ -1,0 +1,85 @@
+C51 COMPILER V9.60.0.0   HWAPI                                                             04/25/2021 03:08:11 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE HWAPI
+OBJECT MODULE PLACED IN .\Objects\hwapi.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE hwapi.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\hwa
+                    -pi.lst) TABS(2) OBJECT(.\Objects\hwapi.obj)
+
+line level    source
+
+   1          #include "hwapi.h"
+   2          #include <REG52.H>
+   3          void configureTimerInterrupt();
+   4          
+   5          //INPUTS
+   6          sbit WINDOW1 = P0^0;
+   7          sbit WINDOW2 = P0^1;
+   8          sbit LEAK = P0^2;
+   9          sbit FIRE = P0^3;
+  10          sbit DOOR1 = P0^4;
+  11          sbit DOOR2 = P0^5;
+  12          sbit PRESENCE = P0^6;
+  13          sbit KEY = P3^0;
+  14          sbit RFID = P3^1;
+  15          
+  16          //OUTPUTS
+  17          sbit POWER = P1^0;
+  18          sbit ACTIVE = P1^1;
+  19          sbit SIREN = P1^2;
+  20          
+  21          int seconds = 0;
+  22          void initialize() {
+  23   1        P0 = 0xFF;
+  24   1        P1 = 0xFF;
+  25   1        POWER = 1;
+  26   1        setActiveOff();
+  27   1        setAlarmOff();
+  28   1        configureTimerInterrupt();
+  29   1      }
+  30          
+  31          int isKey() {return KEY;}
+  32          int isRfid() {return RFID;}
+  33          int indoorSensors() {return WINDOW1 || WINDOW2 || LEAK || FIRE;}
+  34          int outdoorSensors() {return indoorSensors() || PRESENCE || DOOR1 || DOOR2 ;}
+  35          int getSeconds(){return seconds;}
+  36          
+  37          void setAlarmOn() { SIREN = 1;}
+  38          void setAlarmOff() { SIREN = 0;}
+  39          void setActiveOn() {ACTIVE = 1;}
+  40          void setActiveOff() {ACTIVE = 0;}
+  41          void showState(state) {P2 = state;}
+  42          void resetSeconds() {seconds = 0;}
+  43          
+  44            
+  45            void configureTimerInterrupt() {
+  46   1          ET0= 1; TMOD= 0x01; TL0= 0xB7; TH0= 0x3C; TR0= 1; EA = 1;}
+  47            
+  48           
+  49            void incrementSeconds() interrupt 1 {
+  50   1          static int ticks = 0;
+  51   1          TL0= 0xB7; TH0= 0x3C; ticks++;
+  52   1       
+  53   1          if (ticks == 20) {
+  54   2            seconds++;
+C51 COMPILER V9.60.0.0   HWAPI                                                             04/25/2021 03:08:11 PAGE 2   
+
+  55   2            ticks = 0;
+  56   2          }
+  57   1        }
+  58              
+  59          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    160    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,90 @@
+C51 COMPILER V9.60.0.0   HOMEALARM                                                         04/24/2021 17:27:10 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE HOMEALARM
+OBJECT MODULE PLACED IN .\Objects\homealarm.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE homealarm.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings
+                    -\homealarm.lst) TABS(2) OBJECT(.\Objects\homealarm.obj)
+
+line level    source
+
+   1          #pragma NOEXTEND
+   2          #include "hwapi.h"
+   3          
+   4          void main() {
+   5   1        enum {INACTIVE,INDOORS,OUTDOORS,DELAY,ALARM} device_state = INACTIVE;
+   6   1        initialize();
+   7   1        while (1) {
+   8   2          showState(device_state);
+   9   2          switch (device_state) {
+  10   3            case INACTIVE:
+  11   3              if (isKey()) {
+  12   4                  device_state = INDOORS;
+  13   4                  setActiveOn();
+  14   4                   
+  15   4              }
+  16   3              break;
+  17   3            case  INDOORS:
+  18   3              if (indoorSensors()) {
+  19   4                device_state = ALARM;
+  20   4              }
+  21   3              else if (isRfid()) {
+  22   4                device_state = OUTDOORS;
+  23   4              }
+  24   3              else if (isKey()==0) {
+  25   4                device_state = INACTIVE;
+  26   4                setActiveOff();
+  27   4              }
+  28   3              break;
+  29   3            
+  30   3            case OUTDOORS:
+  31   3              if (indoorSensors() || outdoorSensors()) {
+  32   4                resetSeconds();
+  33   4                device_state = DELAY;
+  34   4              }
+  35   3              else if (isRfid()==0) {
+  36   4                device_state = INDOORS;
+  37   4              }
+  38   3              break;
+  39   3            
+  40   3            case DELAY:
+  41   3              if (isRfid() == 0) {
+  42   4                 device_state = INDOORS;
+  43   4              }
+  44   3              else if (indoorSensors() == 0 && outdoorSensors() == 0) {
+  45   4                 device_state = OUTDOORS;
+  46   4              }
+  47   3              else if (getSeconds() >= 5) {
+  48   4                device_state = ALARM;
+  49   4              }
+  50   3              break;
+  51   3            
+  52   3            case ALARM:
+  53   3               setAlarmOn();
+  54   3               if (isKey()== 0) {
+C51 COMPILER V9.60.0.0   HOMEALARM                                                         04/24/2021 17:27:10 PAGE 2   
+
+  55   4                 setAlarmOff();
+  56   4                 setActiveOff();
+  57   4                 device_state = INACTIVE;
+  58   4               }
+  59   3               break;
+  60   3             }
+  61   2           }
+  62   1       }
+  63          
+  64           
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    192    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
